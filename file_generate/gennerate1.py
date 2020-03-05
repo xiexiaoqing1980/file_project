@@ -22,7 +22,7 @@ def generate_file(target,fileNameList,fileTypeList):
 
 
 def generate_filenamelist(charlist):
-    """生成文件的函数，此处用到递归"""
+    """生成文件名的函数，此处用到递归"""
     if len(charlist)<=1:    #如果长度为1，说明只有一个字符/字符串，排列组合就是它自己
         return charlist
     filenameList=[]  #保存字符串的所有可能排列组合
@@ -31,6 +31,22 @@ def generate_filenamelist(charlist):
             filenameList.append(charlist[i]+j)
 
     return filenameList
+
+def copy_And_rename_File( src_file_path,target_file,char_list):
+    """复制文件并重命名文件"""
+    if  not os.path.exists(src_file_path):
+        raise FileNotFoundError
+    if os.path.isfile(src_file_path):
+        raise NotADirectoryError
+    src_file_list= os.listdir(src_file_path)    #获取资源下的所有文件和文件夹
+    suffix_list=[]
+    fileNameList = generate_filenamelist(char_list)
+    for src_file in src_file_list:
+        suffix = src_file[src_file.index("."):]  #获取后缀
+        # suffix_list.append(suffix)   #获取后缀名列表
+        for fileName in fileNameList:
+            shutil.copy(os.path.join(src_file_path,src_file),os.path.join(target_file,fileName+suffix))
+
 
 
 
@@ -46,13 +62,14 @@ def generate_filenamelist(charlist):
         # os.rmdir()
 
 
-
-
 if __name__ == '__main__':
     fileTypeList=[".docx",".gif",".pdf",".doc"]
-    charlist=[" ","&","%","test","#"]
-    fileNameList=generate_filenamelist(charlist)
-    generate_file("D:/",fileNameList,fileTypeList)
+    charlist=["&","%","test"]
+    # fileNameList=generate_filenamelist(charlist)
+    # generate_file("D:/",fileNameList,fileTypeList)
+    path="D:/src_file"
+    target="E:/File_folder"
+    copy_And_rename_File(path,target,charlist)
 
      # deleteAllFiles("D:/file_folder")
 
