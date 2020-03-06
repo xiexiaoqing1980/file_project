@@ -5,8 +5,7 @@ import shutil
 
 def generate_file(target,fileNameList,fileTypeList):
     """生成文件"""
-    path=init_files()
-
+    path=init_files(target)
     for fileType in fileTypeList:
         for filename in fileNameList:
             fullpath=os.path.join(path,filename+fileType)
@@ -31,10 +30,7 @@ def copy_And_rename_File( src_file_path,target_file,char_list):
     :param target_file
     :param char_list
     """
-    if  not os.path.exists(src_file_path):
-        raise FileNotFoundError
-    if os.path.isfile(src_file_path):
-        raise NotADirectoryError
+    path=init_files(src_file_path,target_file)
     src_file_list= os.listdir(src_file_path)    #获取资源下的所有文件和文件夹
     suffix_list=[]
     fileNameList = generate_filenamelist(char_list)
@@ -42,14 +38,15 @@ def copy_And_rename_File( src_file_path,target_file,char_list):
         suffix = src_file[src_file.index("."):]  #获取后缀
         # suffix_list.append(suffix)   #获取后缀名列表
         for fileName in fileNameList:
-            shutil.copy(os.path.join(src_file_path,src_file),os.path.join(target_file,fileName+suffix))
+            shutil.copy(os.path.join(src_file_path,src_file),os.path.join(path,fileName+suffix))
 
-def init_files(*src_file_path,target_file_path):
-    if  not os.path.exists(src_file_path):
-        raise FileNotFoundError
-    if os.path.isfile(src_file_path):
-        raise NotADirectoryError
-    path = os.path.join(target_file_path, '/file_folder')
+def init_files(*file_path):
+    for path in file_path:
+        if  not os.path.exists(path):
+            raise FileNotFoundError
+        if os.path.isfile(path):
+            raise NotADirectoryError
+    path = os.path.join(file_path[-1], '/file_folder')
     if not os.path.exists(path):  # 如果目标文件夹不存在就生成新的文件夹
         os.mkdir(path)  # 生成目标文件夹
     else:
@@ -86,7 +83,7 @@ def init_files(*src_file_path,target_file_path):
 if __name__ == '__main__':
     fileTypeList=[".docx",".gif",".pdf",".doc"]
     charlist=["&","%","test"]
-    # fileNameList=generate_filenamelist(charlist)
+    fileNameList=generate_filenamelist(charlist)
     # generate_file("D:/",fileNameList,fileTypeList)
     path="D:/src_file"
     target="E:/"
