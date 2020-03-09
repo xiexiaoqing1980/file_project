@@ -3,14 +3,16 @@ import os
 import shutil
 
 
-def generate_file(target,fileNameList,fileTypeList):
-    """生成文件"""
+def generate_file(target,fileNameList,fileTypeList,fileSize):
+    """生成文件
+    :param fileSize 文件大小
+    """
     path=init_files()
 
     for fileType in fileTypeList:
         for filename in fileNameList:
             fullpath=os.path.join(path,filename+fileType)
-            with open(fullpath,'w') as fp:
+            with open(fullpath,'w',encoding='utf-8') as fp:
                 fp.write("")
 
 
@@ -57,6 +59,8 @@ def init_files(*src_file_path,target_file_path):
         os.mkdir(path)
 
     return path
+
+
 
 
 
