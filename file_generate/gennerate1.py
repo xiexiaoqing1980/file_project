@@ -8,12 +8,14 @@ def generate_file(target,fileNameList,fileTypeList,fileSize):
     :param fileSize 文件大小
     """
     path=init_files()
+    data_size=0
 
     for fileType in fileTypeList:
         for filename in fileNameList:
             fullpath=os.path.join(path,filename+fileType)
             with open(fullpath,'w',encoding='utf-8') as fp:
-                fp.write("")
+                while data_size<fileSize:
+                    fp.write("")
 
 
 def generate_filenamelist(charlist):
