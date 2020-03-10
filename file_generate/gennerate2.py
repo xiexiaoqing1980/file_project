@@ -1,16 +1,23 @@
 
 import os
 import shutil
+import random
 
 
-def generate_file(target,fileNameList,fileTypeList):
+def generate_file(target,fileNameList,fileTypeList,fileSize):
     """生成文件"""
     path=init_files(target)
+    # data_size = 0
     for fileType in fileTypeList:
         for filename in fileNameList:
             fullpath=os.path.join(path,filename+fileType)
-            with open(fullpath,'w') as fp:
-                fp.write("")
+            with open(fullpath,'a+') as fp:
+                # while data_size < fileSize:
+                #     fp.write('1')  # 写入数字
+                #     data_size = os.path.getsize(fullpath)
+                fp.seek(1024*1024*1024*fileSize)  #以MB为单位
+                fp.write('1')
+
 
 
 def generate_filenamelist(charlist):
@@ -51,8 +58,7 @@ def init_files(*file_path):
         os.mkdir(path)  # 生成目标文件夹
     else:
         shutil.rmtree(path)  # 把生成的文件删除
-        os.mkdir(path)
-
+        os.mkdir(path)       #此处可能出现异常
     return path
 
 
@@ -81,13 +87,13 @@ def init_files(*file_path):
 
 
 if __name__ == '__main__':
-    fileTypeList=[".docx",".gif",".pdf",".doc"]
-    charlist=["&","%","test"]
+    fileTypeList=[".doc"]
+    charlist=["test"]
     fileNameList=generate_filenamelist(charlist)
-    # generate_file("D:/",fileNameList,fileTypeList)
+    generate_file("D:/",fileNameList,fileTypeList,fileSize=1024*20)
     path="D:/src_file"
     target="E:/"
-    copy_And_rename_File(path,target,charlist)
+    # copy_And_rename_File(path,target,charlist)
 
      # deleteAllFiles("D:/file_folder")
 
