@@ -1,22 +1,25 @@
 
 import os
 import shutil
-import random
 
 
 def generate_file(target,fileNameList,fileTypeList,fileSize):
-    """生成文件"""
+    """生成文件
+    :param target 生成目录
+    :param fileNameList 文件名列表
+    :param fileTypeList 文件后缀名
+    :param fileSize  文件大小
+    """
     path=init_files(target)
     # data_size = 0
     for fileType in fileTypeList:
         for filename in fileNameList:
             fullpath=os.path.join(path,filename+fileType)
-            with open(fullpath,'a+') as fp:
-                # while data_size < fileSize:
-                #     fp.write('1')  # 写入数字
-                #     data_size = os.path.getsize(fullpath)
-                fp.seek(1024*1024*1024*fileSize)  #以MB为单位
-                fp.write('1')
+            with open(fullpath,'wb') as fp:
+                # fp.seek(fileSize)  #以MB为单位
+                # fp.write(b'\x00')    #写入空白字符
+                bytes=os.urandom(fileSize)
+                fp.write(bytes)   #随即产生n个字节的字符串，可以作为随机加密key使用~
 
 
 
@@ -87,7 +90,7 @@ def init_files(*file_path):
 
 
 if __name__ == '__main__':
-    fileTypeList=[".doc"]
+    fileTypeList=[".txt",'.gif','.pdf']
     charlist=["test"]
     fileNameList=generate_filenamelist(charlist)
     generate_file("D:/",fileNameList,fileTypeList,fileSize=1024*20)
