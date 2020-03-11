@@ -20,11 +20,11 @@ def init_window():
     myWindow.resizable(width=True, height=True)
 
     L1=Label(myWindow, text="请输入源文件夹路径", font=('Arial 12 bold'), width=20, height=5).pack(side='left')
-    L1.pack(side=LEFT)
-    E1 = Entry(myWindow, bd=5)
-    E1.pack(side=RIGHT)
+    E1 = Entry(myWindow, bd=5, width=30)
+    E1.pack(side='left')
+    value=E1.get()    #获取输入值
 
-    b1 = Button(myWindow, text='确定', bg="red", relief='raised', width=8, height=2)
+    # b1 = Button(myWindow, text='确定', bg="red", relief='raised', width=8, height=2)
 
 
     # b1.grid(row=0, column=0, sticky=W, padx=5, pady=5)
@@ -33,6 +33,11 @@ def init_window():
     #进入消息循环
 
     myWindow.mainloop()
+
+
+# def get_value(Entry):
+    # value=Entry.get()
+    # return value
 
 if __name__ == '__main__':
     init_window()
