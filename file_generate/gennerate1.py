@@ -1,6 +1,7 @@
 
 import os
 import shutil
+import random
 
 
 def generate_file(target,fileNameList,fileTypeList,fileSize):
@@ -15,12 +16,13 @@ def generate_file(target,fileNameList,fileTypeList,fileSize):
             fullpath=os.path.join(path,filename+fileType)
             with open(fullpath,'w',encoding='utf-8') as fp:
                 while data_size<fileSize:
-                    fp.write("")
+                    fp.write(str(round(random.uniform(0,10),2)))   #写入数字
+                    data_size=os.path.getsize(fullpath)
 
 
 def generate_filenamelist(charlist):
     """生成文件名的函数，此处用到递归"""
-    if len(charlist)<=1:    #如果长度为1，说明只有一个字符/字符串，排列组合就是它自己
+    if len(charlist)<=1:    # 如果长度为1，说明只有一个字符/字符串，排列组合就是它自己
         return charlist
     filenameList=[]  #保存字符串的所有可能排列组合
     for i in range(len(charlist)): #确定列表中的的第一个字母是谁，有n种可能（n为charList的长度)
@@ -48,8 +50,9 @@ def copy_And_rename_File( src_file_path,target_file,char_list):
         for fileName in fileNameList:
             shutil.copy(os.path.join(src_file_path,src_file),os.path.join(target_file,fileName+suffix))
 
+
 def init_files(*src_file_path,target_file_path):
-    if  not os.path.exists(src_file_path):
+    if not os.path.exists(src_file_path):
         raise FileNotFoundError
     if os.path.isfile(src_file_path):
         raise NotADirectoryError
@@ -90,13 +93,13 @@ def init_files(*src_file_path,target_file_path):
 
 
 if __name__ == '__main__':
-    fileTypeList=[".docx",".gif",".pdf",".doc"]
-    charlist=["&","%","test"]
-    # fileNameList=generate_filenamelist(charlist)
-    # generate_file("D:/",fileNameList,fileTypeList)
+    fileTypeList=[".doc"]
+    charlist=["test"]
+    fileNameList=generate_filenamelist(charlist)
+    generate_file("D:/",fileNameList,fileTypeList,fileSize=1024)
     path="D:/src_file"
     target="E:/"
-    copy_And_rename_File(path,target,charlist)
+    # copy_And_rename_File(path,target,charlist)
 
      # deleteAllFiles("D:/file_folder")
 
