@@ -24,4 +24,7 @@ if __name__ == '__main__':
     # for file in dirs:
     # deleteAllFiles("D:/empty")
     #     print(file)
-    get_size("D:/file_folder/test.doc",1024)
+    # get_size("D:/file_folder/test.doc",1024)
+    str="\n\rabc\n\r"
+    new=str.lstrip()
+    print(new+"-----")

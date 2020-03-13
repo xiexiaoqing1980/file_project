@@ -16,9 +16,9 @@ def generate_file(target,fileNameList,fileTypeList,fileSize):
         for filename in fileNameList:
             fullpath=os.path.join(path,filename+fileType)
             with open(fullpath,'wb') as fp:
-                # fp.seek(fileSize)  #以MB为单位
+                # fp.seek(fileSize)
                 # fp.write(b'\x00')    #写入空白字符
-                bytes=os.urandom(fileSize)
+                bytes=os.urandom(fileSize*1024*1024)     #以MB为单位
                 fp.write(bytes)   #随即产生n个字节的字符串，可以作为随机加密key使用~
 
 
@@ -66,27 +66,6 @@ def init_files(*file_path):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-# def deleteAllFiles(filePath):
-#     if os.path.exists(filePath):
-#         for dirpath ,dirnames,filenames in os.walk(filePath):
-#             for name in filenames:
-#                 os.remove(os.path.join(dirpath,name))   #递归删除文件
-#         for folder in os.listdir(filePath):
-#             name=os.path.join(filePath,folder)
-#             if not os.listdir():
-#                 os.rmdir(os.path.join(name))
-        # os.rmdir()
 
 
 if __name__ == '__main__':
