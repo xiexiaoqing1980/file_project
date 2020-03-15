@@ -15,6 +15,11 @@ def get_size(fullpath,fileSize):
             fp.write('1')  # 写入数字
             data_size = os.path.getsize(fullpath)
 
+def test(firrst,second):
+    return firrst-second
+
+
+
 
 
 if __name__ == '__main__':
@@ -28,3 +33,5 @@ if __name__ == '__main__':
     str="\n\rabc\n\r"
     new=str.lstrip()
     print(new+"-----")
+
+    print()

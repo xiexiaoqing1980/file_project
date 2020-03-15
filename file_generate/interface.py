@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter.filedialog import askdirectory
 import gennerate_file as gen
+from tkinter import messagebox
 
 
 
@@ -18,12 +19,58 @@ alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth-width)/2, (screenheight-
 myWindow.geometry(alignstr)
 #设置窗口是否可变长、宽，True：可变，False：不可变
 myWindow.resizable(width=True, height=True)
+
+
+L1 = Label(myWindow, text="请选择要生成的文件类型（可多选）", font=('Arial 8 bold'), width=20, height=1).grid(row=2,column=1)
+button_var1=IntVar()
+button_var2=IntVar()
+button_var3=IntVar()
+button_var4=IntVar()
+button_var5=IntVar()
+button_var6=IntVar()
+file_type_list=[".pdf",".docx",".doc",".txt",".img"]
+selected_type=[]
+v=[]
+
+for type in file_type_list:
+    v.append(IntVar())
+    Checkbutton(myWindow, text=type, variable=v[-1]).grid()
+
+for each in v:#显示状态的框
+　
+
+
+
+
+def click_checkbox():
+    if button_var1.get():
+        file_type_list.insert(".pdf")
+
+
+
+#生成button函数
+# for i in range(10):
+# button1 = Checkbutton(myWindow,text=".pdf",command=click_checkbox,variable=button_var1)
+# button2 = Checkbutton(myWindow,text=".docx",command=click_checkbox,variable=button_var2)
+# button3 = Checkbutton(myWindow,text=".doc",command=click_checkbox,variable=button_var3)
+# button4 = Checkbutton(myWindow,text=".txt",command=click_checkbox,variable=button_var4)
+# button5 = Checkbutton(myWindow,text=".img",command=click_checkbox,variable=button_var5)
+# button6 = Checkbutton(myWindow,text=".png",command=click_checkbox,variable=button_var6)
+#
+# button1.grid(row=2,column=2)
+# button2.grid(row=2,column=3)
+# button3.grid(row=2,column=4)
+# button4.grid(row=2,column=5)
+# button5.grid(row=2,column=6)
+# button6.grid(row=2,column=7)
+
+
 L1 = Label(myWindow, text="请输入要生成的文件类型（以逗号隔开）", font=('Arial 8 bold'), width=20, height=1).grid(row=1,column=1)
 file_type = Entry(myWindow, bd=5, width=30)
 file_type.grid(row=1,column=2)
 
-L2 = Label(myWindow, text="请选择目标文件夹路径", font=('Arial 8 bold'), width=20, height=10).grid(row=3,column=1)
 path=StringVar()
+L2 = Label(myWindow, text="请选择目标文件夹路径", font=('Arial 8 bold'), width=20, height=10).grid(row=3,column=1)
 target = Entry(myWindow, textvariable = path)
 target.grid(row = 3, column = 2)
 
@@ -51,8 +98,7 @@ def click_confirm():
     except:
         print("error")
     else:
-        print("success")
-
+        messagebox.showinfo("结果","文件生成成功")
 
 
 def selectPath():
