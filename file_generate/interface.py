@@ -49,7 +49,7 @@ def click_checkbox():
 
 for type in file_type_list:
     v.append(StringVar())
-    # Checkbutton(frm_l, text=type, variable=v[-1],command=click_checkbox,onvalue=type,offvalue="").grid()
+    Checkbutton(frm_l, text=type, variable=v[-1],command=click_checkbox,onvalue=type,offvalue="").pack(side="left")
 
 
 #生成button函数
@@ -85,7 +85,7 @@ L2 = Label(myWindow, text="请输入需要生成的文件大小（MB）", font=(
 file_size = Entry(myWindow, bd=5, width=30)
 file_size.grid(row=4,column=2)
 
-L2 = Label(myWindow, text="请输入需要组合的文件名称字符，按逗号隔开", font=('Arial 8 bold'), width=40, height=10).grid(row=7,column=1)
+L2 = Label(myWindow, text="请输入需要组合的文件名称字符(按逗号隔开)", font=('Arial 8 bold'), width=40, height=10).grid(row=7,column=1)
 file_name = Entry(myWindow, bd=5, width=30)
 file_name.grid(row=7,column=2)
 
