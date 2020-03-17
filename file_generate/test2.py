@@ -41,20 +41,44 @@ myWindow.resizable(width=True, height=True)
 # 定义一个大的frame，定义在window上
 frm=Frame(myWindow)
 frm.pack()
-frm_l = Frame(frm)
-frm_r = Frame(frm)
+frm_l = Frame(frm,height=100)
+frm_2 = Frame(frm,height=100)
+frm_3 = Frame(frm,width=1)
+frm_4 = Frame(frm,width=1)
 frm_l.pack()
-frm_r.pack()
+frm_2.pack()
+frm_3.pack()
+frm_4.pack()
+v=[]
+def click_checkbox():
+    global selected_type        #声明为全局变量，可以在局部变量中修改值
+    each_select=[]
+    for state in v:
+        if state.get() !="":
+            each_select.append(state.get())
+    selected_type = each_select
 
-L1 = Label(frm_l, text="请选择要生成的文件类型（可多选）", font=('Arial 12 bold'), width=30, height=1).pack(side="left")
+file_type_list=[".pdf",".docx",".doc",".txt",".img","jpg"]
 
-L2 = Label(frm_r, text="请选择目标文件夹路径", font=('Arial 12 bold'), width=20, height=10).pack(side="left")
-target = Entry(frm_r,validate='focusout')
+L1 = Label(frm_l, text="请选择要生成的文件类型（可多选）", font=('Arial 12 bold'), width=25, height=1).pack(side="left")
+L2 = Label(frm_2, text="请输入自定义文件类型", font=('Arial 12 bold'), width=20, height=10).pack(side="left")
+for type in file_type_list:
+    v.append(StringVar())
+    Checkbutton(frm_l, text=type, variable=v[-1],command=click_checkbox,onvalue=type,offvalue="").pack(side="left")
+file_type = Entry(frm_2,  width=30,bd=5)
+file_type.pack(side="left")
+
+
+L2 = Label(frm_3, text="请选择目标文件夹路径", font=('Arial 12 bold'), width=20, height=10).pack(side="left")
+target = Entry(frm_3,validate='focusout',width=25,bd=5)
 target.pack(side="left")
 
 b1 = Button(myWindow, text='确定', relief='raised', width=5, height=2).pack()
-Button(frm_r, text = "请选择文件的生成位置").pack(side="right")
+Button(frm_3,text = "请选择文件的生成位置").pack(side="right")
 
+L2 = Label(frm_4, text="请输入需要生成的文件大小（MB）", font=('Arial 12 bold'), width=30, height=10).pack(side="left")
+file_size = Entry(frm_4, bd=5, width=30)
+file_size.pack(side="left")
 
 
 
