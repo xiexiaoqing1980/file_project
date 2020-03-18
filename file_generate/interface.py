@@ -117,9 +117,10 @@ def click_confirm():
     file_type_list=file_type.get().strip().split(",")
 
     for file in file_type_list:
-        selected_type.append(file)
+        if  file:
+            selected_type.append(file)
 
-    if not file_type.get().strip():
+    if not selected_type:
         messagebox.showwarning("结果", "请选择或者输入文件类型")
         return
 
