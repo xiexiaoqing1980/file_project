@@ -64,8 +64,8 @@ file_type_list=[".pdf",".docx",".doc",".txt",".img","jpg"]
 frame1 = Frame(myWindow)
 frame1.grid(row=0, column=0, sticky='w')  # sticky='w'指定了组件在单元格中靠左对齐
 
-lb1_1= Label(frame1, text = '1、请选择用例识别方式: ')
-lb1_1.grid()
+lb1_1= Label(myWindow, text = '1、请选择用例识别方式: ')
+lb1_1.pack(side="left")
 
 # L1 = Label(frm_l, text="请选择要生成的文件类型（可多选）", font=('Arial 12 bold'), width=25, height=1).pack(side="left")
 # L2 = Label(frm_2, text="请输入自定义文件类型", font=('Arial 12 bold'), width=20, height=10).pack(side="left")

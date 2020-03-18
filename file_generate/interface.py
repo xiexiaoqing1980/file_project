@@ -28,7 +28,7 @@ frm_r = Frame(frm)
 frm_l.grid()
 frm_r.grid()
 
-L1 = Label(myWindow, text="请选择要生成的文件类型（可多选）", font=('Arial 8 bold'), width=20, height=1).grid(row=2,column=1)
+L1 = Label(myWindow, text="请选择要生成的文件类型（可多选）", font=('Arial 8 bold'), width=20, height=1).grid(row=0,column=1)
 button_var1=IntVar()
 button_var2=IntVar()
 button_var3=IntVar()
@@ -52,21 +52,6 @@ for type in file_type_list:
     # Checkbutton(frm_l, text=type, variable=v[-1],command=click_checkbox,onvalue=type,offvalue="").grid()
 
 
-#生成button函数
-# for i in range(10):
-# button1 = Checkbutton(myWindow,text=".pdf",command=click_checkbox,variable=button_var1)
-# button2 = Checkbutton(myWindow,text=".docx",command=click_checkbox,variable=button_var2)
-# button3 = Checkbutton(myWindow,text=".doc",command=click_checkbox,variable=button_var3)
-# button4 = Checkbutton(myWindow,text=".txt",command=click_checkbox,variable=button_var4)
-# button5 = Checkbutton(myWindow,text=".img",command=click_checkbox,variable=button_var5)
-# button6 = Checkbutton(myWindow,text=".png",command=click_checkbox,variable=button_var6)
-#
-# button1.grid(row=2,column=2)
-# button2.grid(row=2,column=3)
-# button3.grid(row=2,column=4)
-# button4.grid(row=2,column=5)
-# button5.grid(row=2,column=6)
-# button6.grid(row=2,column=7)
 
 
 L1 = Label(myWindow, text="请输入要生成的文件类型（以逗号隔开）", font=('Arial 10 bold'), width=20, height=10).grid(row=1,column=1)
@@ -85,9 +70,9 @@ L2 = Label(myWindow, text="请输入需要生成的文件大小（MB）", font=(
 file_size = Entry(myWindow, bd=5, width=30)
 file_size.grid(row=4,column=2)
 
-L2 = Label(myWindow, text="请输入需要组合的文件名称字符，按逗号隔开", font=('Arial 8 bold'), width=40, height=10).grid(row=7,column=1)
+L2 = Label(myWindow, text="请输入需要组合的文件名称字符，按逗号隔开", font=('Arial 8 bold'), width=40, height=10).grid(row=5,column=1)
 file_name = Entry(myWindow, bd=5, width=30)
-file_name.grid(row=7,column=2)
+file_name.grid(row=5,column=2)
 
 
 def click_confirm():
