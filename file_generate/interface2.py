@@ -8,7 +8,7 @@ from tkinter import messagebox
 #初始化Tk()
 myWindow = Tk()
 #设置标题
-myWindow.title('File tool')
+myWindow.title('File Generator')
 #设置窗口大小
 width = 600
 height = 600
@@ -21,21 +21,13 @@ myWindow.geometry(alignstr)
 myWindow.resizable(width=True, height=True)
 
 # 定义一个大的frame，定义在window上
-frm=Frame(myWindow)
-frm.grid()
-frm_l = Frame(frm)
-frm_r = Frame(frm)
-frm_l.grid()
-frm_r.grid()
+frame1=Frame(myWindow)
+frame1.grid(row=0, column=0, sticky='w')
+# frm_r = Frame(frm)
+L1 = Label(frame1, text="1、 * 请选择要生成的文件类型（可多选）", font=('Arial 10 bold'),padx = 0)
+L1.pack(anchor="nw")
 
-L1 = Label(myWindow, text="请选择要生成的文件类型（可多选）", font=('Arial 8 bold'), width=20, height=1).grid(row=2,column=1)
-button_var1=IntVar()
-button_var2=IntVar()
-button_var3=IntVar()
-button_var4=IntVar()
-button_var5=IntVar()
-button_var6=IntVar()
-file_type_list=[".pdf",".docx",".doc",".txt",".img"]
+file_type_list=[".pdf",".docx",".doc",".txt",".img",".png",".jpg",".exe"]
 selected_type=[]
 v=[]          #状态数组
 
@@ -49,7 +41,21 @@ def click_checkbox():
 
 for type in file_type_list:
     v.append(StringVar())
-    # Checkbutton(frm_l, text=type, variable=v[-1],command=click_checkbox,onvalue=type,offvalue="").grid()
+    Checkbutton(frame1, text=type, variable=v[-1],command=click_checkbox,onvalue=type,offvalue="").pack(side="left")
+
+
+
+frame2=Frame(myWindow)
+frame2.grid(row=1, column=0, sticky='w')
+L2 = Label(frame2, text="2、* 请输入要生成的文件类型（以逗号隔开）", font=('Arial 10 bold'))
+L2.pack(side="top",ipadx=5)
+
+frame3=Frame(myWindow)
+frame3.grid(row=1, column=0, sticky='w')
+L3 = Label(frame2, text="2、* 请输入要生成的文件类型（以逗号隔开）", font=('Arial 10 bold'))
+L3.pack(side="left")
+
+
 
 
 #生成button函数
@@ -85,7 +91,7 @@ L2 = Label(myWindow, text="请输入需要生成的文件大小（MB）", font=(
 file_size = Entry(myWindow, bd=5, width=30)
 file_size.grid(row=4,column=2)
 
-L2 = Label(myWindow, text="请输入需要组合的文件名称字符，按逗号隔开", font=('Arial 8 bold'), width=40, height=10).grid(row=7,column=1)
+L2 = Label(myWindow, text="请输入需要组合的文件名称字符(按逗号隔开)", font=('Arial 8 bold'), width=40, height=10).grid(row=7,column=1)
 file_name = Entry(myWindow, bd=5, width=30)
 file_name.grid(row=7,column=2)
 
