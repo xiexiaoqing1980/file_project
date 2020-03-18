@@ -43,7 +43,7 @@ def generate_file(target,charlist,fileTypeList,fileSize):
     for fileType in fileTypeList:
         count = 0
         for filename in fileNameList:
-            fullpath=os.path.join(target,filename+"."+fileType.strip())
+            fullpath=os.path.join(target,filename+fileType.strip())
             with open(fullpath,'wb') as fp:
                 # fp.seek(fileSize)
                 # fp.write(b'\x00')    #写入空白字符
